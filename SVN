@@ -11,7 +11,7 @@ for file in $(svn st |  grep '^\?' | sed "s/^.//g" | awk '{$1=$1};1'); do svn ad
 Delete multiple line in svn
 for file in $(svn st |  grep '^\!' | sed "s/^.//g" | awk '{$1=$1};1'); do svn delete $file; done
 NOTE: Above command will fail if a file/folder name conatins space/@. 
-Use below command to add file which contain @ in file name 
+Use below command to delete file which contain @ in file name 
 for file in $(svn st |  grep '^\!' | sed "s/^.//g" | awk '{$1=$1};1'); do svn delete $file@; done
 
 Get commit description between revisions
