@@ -1,0 +1,27 @@
+Check out the repository 
+svn co repository_url
+
+Add multiple line in svn
+for file in $(svn st |  grep '^\?' | sed "s/^.//g" | awk '{$1=$1};1'); do svn add $file; done
+NOTE: Above command will fail if a file/folder name conatins space/@. 
+Use below command to add file which contain @ in file name 
+for file in $(svn st |  grep '^\?' | sed "s/^.//g" | awk '{$1=$1};1'); do svn add $file@; done
+
+
+Delete multiple line in svn
+for file in $(svn st |  grep '^\!' | sed "s/^.//g" | awk '{$1=$1};1'); do svn delete $file; done
+NOTE: Above command will fail if a file/folder name conatins space/@. 
+Use below command to add file which contain @ in file name 
+for file in $(svn st |  grep '^\!' | sed "s/^.//g" | awk '{$1=$1};1'); do svn delete $file@; done
+
+Get commit description between revisions
+svn log -r 375:492
+
+Get commit description along with modified/added/deleted file name between revisions
+svn log -v -r 375:492
+
+Get commit description between revisions with changes details
+svn log -r 375:492 --diff
+
+Get author name between revisions
+svn log -r 375:492 | grep "^r" | awk '{print $3}' | sort | uniq
